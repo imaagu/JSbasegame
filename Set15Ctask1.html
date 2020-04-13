@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet"  href="styke.css">
+	</head>
+	<body>
+		<div class="container">
+		<h2 >Collect X</h2>
+		<h3>Collece as many X as you can in 10 seconds</h3>
+		<div class="clear">
+			<button  class="button" onclick="start()">Start</button>
+			<div class="right">
+				<div id="t1"></div>
+				
+				<div id="s1"></div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/><br/>
+		<div  class="subc" id='show'></div>
+	</div>
+	</body>
+	<script>
+		var score =0;
+		var j =100;
+		var time = 0;
+		var arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		show();
+
+		function show()
+		{
+			time1();
+			var str = "";
+        	for(var i=0 ; i<40 ; i++)
+        	{  
+        		if(arr[i]===0)
+        		var row = "<div class='cell' onclick=add("+j+")>"  + " 0" + "</div>";
+        	    if(arr[i]=== 1)
+        	    	var row = "<div class='cellG'  onclick=add("+i+")>" + " X " + "</div>";
+        	    
+                    str = str + row; 
+        	}
+        	var e = document.getElementById('show');
+        	e.innerHTML = str;
+		}
+
+		function time1()
+		{   
+			var t1 = document.getElementById("t1");
+			t1.innerHTML ="time: " + time + "s" ;
+			var s1 = document.getElementById("s1");
+			s1.innerHTML ="Score: " + score ;
+			
+
+		}
+
+		function start()
+		{
+			interval = setInterval(set, 1000);
+
+		}
+
+		function set() {
+
+	   if(time===9){ clearInterval(interval);
+                      alert("Your Score is " + score);
+	   }
+ 	    time+= 1;
+ 	    var random =  Math.floor(Math.random() * (35 - 0));
+ 	   
+ 	    arr[random] = 1;
+      
+        show();
+
+
+       
+   }
+
+   function add(i)
+   {
+   	if(i===100) score--;
+   	else{
+   	score++;
+    arr[i] = 0;}
+    show();
+
+  
+   }
+
+
+	</script>
+</html>
